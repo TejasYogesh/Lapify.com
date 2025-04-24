@@ -29,5 +29,4 @@ npm install express dotenv mongoose razorpay body-parser cors
 cd ../client
 npm install react react-dom react-router-dom axios
 
-### 1. Clone the Repository
-```bash
+
