@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <div>
-         Tejas is a good boy
+         Tejas is a good boy and rich
       </div>
 
     </>
