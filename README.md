@@ -1,4 +1,4 @@
-# React + Express + Razorpay Integration
+# MERN + Razorpay Integration + ShadCN - UI
 
 This project is a React-based frontend application integrated with an Express backend. It includes features like product listing, chatbot functionality, and Razorpay payment integration.
 
@@ -23,6 +23,8 @@ Make sure you have the following installed on your system:
 - MongoDB (local or cloud-based, e.g., MongoDB Atlas)
 
 ---
+## Frontend : npm install react-router-dom , npm install framer-motion , npm install razorpay
+## Backend  : npm install mongoose, dotenv, express, cors, jsPDF.
 
 ## cd server
 npm install express dotenv mongoose razorpay body-parser cors
