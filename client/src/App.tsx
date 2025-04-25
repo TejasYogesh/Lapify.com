@@ -7,6 +7,7 @@ import Chatbot from './Pages/Chatbot';
 import Login from './Pages/Login';
 import ListOf from './Pages/ListOf';
 import BuyNow from './Pages/BuyNow';
+import Contact from './Pages/Contact';
 function App() {
   return (
    
@@ -16,9 +17,10 @@ function App() {
 
         {/* Other Pages */}
         <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
         <Route path="/listof" element={<ListOf />} />
-        <Route path="/payment-success" element={<PaymentSuccess />} />
+        <Route path="/paymentsuccess" element={<PaymentSuccess />} />
         <Route path="/chatbot" element={<Chatbot />} />
         <Route path="/buynow/:id" element={<BuyNow />} />
       </Routes>

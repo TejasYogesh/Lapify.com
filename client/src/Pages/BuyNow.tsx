@@ -56,11 +56,7 @@ const BuyNow: React.FC = () => {
         <div className="bg-black text-white min-h-screen p-10">
             <div className="max-w-4xl mx-auto">
                 <h1 className="text-4xl font-bold mb-4">{product.title}</h1>
-                <img
-                    src={product.image}
-                    alt={product.title}
-                    className="w-full h-64 object-cover rounded-md mb-4"
-                />
+                <img src={product.image} alt="" />
                 <ul className="mb-4">
                     {product.description.map((desc, index) => (
                         <li key={index} className="text-lg">
