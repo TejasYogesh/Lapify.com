@@ -32,7 +32,7 @@ const Footer: React.FC = () => {
                         </div>
                     ))}
                 </div>
-                <p className="text-center mt-5 text-gray-400">
+                <p className="text-center mt-5 text-gray-400 pb-5">
                     © 2025 Lapify.com |  All rights reserved.
                 </p>
             </div>

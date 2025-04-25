@@ -2,44 +2,61 @@
 
 html,
 body {
-
-    font-family: "Space Mono", monospace;
-    font-weight: 400;
-    font-style: normal;
+  width: 100%;
+  height: 100%;
+  font-family: "Space Mono", monospace;
+  font-weight: 400;
+  font-style: normal;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+#root {
+  width: 100%;
+  height: 100%;
+  background-color: black;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.masked {
+  position: relative;
+  background: url("https://i.pinimg.com/564x/d9/54/87/d95487ffab31b9722b12eaf0e5709494.jpg") no-repeat center center;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  background-size: cover;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.line {
+  border-bottom: 2px dotted #989898;
+  padding-bottom: 15px;
 }
 
-.card {
-  padding: 2em;
+.masked::before {
+  content: "macbook pro.";
+  position: absolute;
+  top: 0;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  background: url("https://i.pinimg.com/564x/d9/54/87/d95487ffab31b9722b12eaf0e5709494.jpg") no-repeat center center;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  background-size: cover;
+  filter: blur(40px);
+  opacity: 0.8;
 }
 
-.read-the-docs {
-  color: #888;
+.masked::after {
+  content: "macbook pro.";
+  position: absolute;
+  top: 0;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  background: url("https://i.pinimg.com/564x/d9/54/87/d95487ffab31b9722b12eaf0e5709494.jpg") no-repeat center center;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  background-size: cover;
+  filter: blur(20px);
+  opacity: 0.8;
 }
