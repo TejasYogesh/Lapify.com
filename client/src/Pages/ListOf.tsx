@@ -12,10 +12,12 @@ import {
 import products from '../data/product';
 import Footer from "@/components/ui/Footer";
 import { motion } from "framer-motion";
+import Navbar from '@/components/Navbar';
+import { useNavigate } from 'react-router-dom';
 
 const Home: React.FC = () => {
     const [isLoading, setIsLoading] = useState(true);
-
+    const navigate = useNavigate();
     useEffect(() => {
         // Simulate a 3-second loading state
         const timer = setTimeout(() => {
@@ -27,17 +29,10 @@ const Home: React.FC = () => {
 
     return (
         <div>
-            <div className='m-10'>
-                <h1>Welcome to the Home Page</h1>
-                <p>This is the starting point of your application.</p>
-                <br />
-                <Button onClick={() => {
-                    googleLogout();
-                    console.log('User logged out');
-                    window.location.href = '/login'; // Redirect to login page
-                }}>
-                    Logout
-                </Button>
+
+
+            <div className='p-10'>
+                <Navbar />
             </div>
 
             <div className='bg-black text-white h-[100vh]'>
@@ -93,7 +88,7 @@ const Home: React.FC = () => {
                                         ))}
                                     </CardHeader>
                                     <CardContent>
-                                        <Button>Buy Now</Button>
+                                        <Button onClick={()=> navigate(`/buynow/${product.id}`)}>Buy Now</Button>
                                     </CardContent>
                                 </Card>
                             </motion.div>

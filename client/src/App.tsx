@@ -3,24 +3,26 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './Pages/Home';
 import About from './Pages/About';
 import PaymentSuccess from './Pages/PaymentSuccess';
-// import LoginPage from './components/LoginPage';
 import Chatbot from './Pages/Chatbot';
 import Login from './Pages/Login';
 import ListOf from './Pages/ListOf';
-
+import BuyNow from './Pages/BuyNow';
 function App() {
   return (
-    <Router>
+   
       <Routes>
-        <Route path="/home" element={<Home />} />
+        {/* Home Page */}
+        <Route path="/" element={<Home />} />
+
+        {/* Other Pages */}
         <Route path="/about" element={<About />} />
-        <Route path="/" element={<Login />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/listof" element={<ListOf />} />
         <Route path="/payment-success" element={<PaymentSuccess />} />
-        <Route path="/" element={<Login />} />
         <Route path="/chatbot" element={<Chatbot />} />
+        <Route path="/buynow/:id" element={<BuyNow />} />
       </Routes>
-    </Router>
+    
   );
 }
 

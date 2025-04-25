@@ -12,7 +12,8 @@ const Footer: React.FC = () => {
         "vite.svg",
         "shadcn.png",
         "exp.jpg",
-        "razorpay.jpg"
+        "razorpay.jpg",
+        "googleauth.webp"
     ]; // Replace with your actual logo image paths
 
     return (

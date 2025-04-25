@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import products from '../data/product';
 import '../App.css';
-// import Footer from '@/components/ui/Footer';
 import { motion } from 'framer-motion';
 
 const Chatbot = () => {
-    const [messages, setMessages] = useState<{ sender: string; text: string }[]>([]);
+    const [messages, setMessages] = useState<{ sender: string; text: string; product?: any }[]>([]);
     const [userInput, setUserInput] = useState('');
 
     const getGreeting = () => {
@@ -25,15 +24,19 @@ const Chatbot = () => {
 
         // Generate chatbot response
         const product = products.find((item) =>
-            userInput.toLowerCase().includes(item.name.toLowerCase())
+            userInput.toLowerCase().includes(item.title.toLowerCase())
         );
 
-        const botMessage = {
-            sender: 'Bot',
-            text: product
-                ? product.description + ' | Price: ' + product.price
-                : "Sorry, I don't recognize that product.",
-        };
+        const botMessage = product
+            ? {
+                sender: 'Bot',
+                text: `Here are the details for ${product.title}:`,
+                product: product,
+            }
+            : {
+                sender: 'Bot',
+                text: "Sorry, I don't recognize that product.",
+            };
 
         setMessages((prev) => [...prev, botMessage]);
         setUserInput('');
@@ -41,13 +44,34 @@ const Chatbot = () => {
 
     return (
         <div style={styles.container}>
-            <h2 style={styles.header}>Ask AI | About our products</h2>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div className='flex flex-row'>
+                    <img src="Picture1.png" alt="" style={{ height: '40px', width: '40px', margin: '10px', borderRadius: '5px' }} />
+                    <h1 className='text-3xl my-auto font-bold'>Lapify.com | Testing Phase.</h1>
+                </div>
+                <button
+                    onClick={() => (window.location.href = '/')}
+                    style={{
+                        margin: '10px',
+                        padding: '10px 20px',
+                        backgroundColor: '#007bff',
+                        color: 'white',
+                        border: 'none',
+                        borderRadius: '5px',
+                        cursor: 'pointer',
+                        fontFamily: 'Space Mono',
+                        fontSize: '16px',
+                    }}
+                >
+                    Home
+                </button>
+            </div>
             <div style={styles.chatWindow as React.CSSProperties}>
                 {messages.length === 0 && (
                     <motion.div
-                        initial={{ opacity: 0, y: -40 }} // Animation starts with opacity 0 and moves up
-                        animate={{ opacity: 1, y: 0 }} // Animation ends with opacity 1 and original position
-                        transition={{ duration: 1 }} // Animation duration
+                        initial={{ opacity: 0, y: -40 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1 }}
                         style={{
                             textAlign: 'center',
                             color: 'gray',
@@ -57,19 +81,18 @@ const Chatbot = () => {
                         }}
                     >
                         {getGreeting()} <br />
-                        <motion.div initial={{ opacity: 0, y: -40 }} // Animation starts with opacity 0 and moves up
-                            animate={{ opacity: 1, y: 0 }} // Animation ends with opacity 1 and original position
-                            transition={{ duration: 1, delay: 0.2 }} // Animation duration
+                        <motion.div
+                            initial={{ opacity: 0, y: -40 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 1, delay: 0.2 }}
                             style={{
                                 textAlign: 'center',
                                 color: 'gray',
-                                // marginTop: '10px',
                                 fontSize: '50px',
                                 fontStyle: 'inherit',
-                            }}>
-
+                            }}
+                        >
                             Welcome! Ask me about our products.
-
                         </motion.div>
                     </motion.div>
                 )}
@@ -79,10 +102,27 @@ const Chatbot = () => {
                         style={{
                             ...styles.message,
                             alignSelf: msg.sender === 'User' ? 'flex-end' : 'flex-start',
-                            backgroundColor: msg.sender === 'User' ? 'skyblue' : 'goldenrod',
+                            backgroundColor: msg.sender === 'User' ? 'maroon' : 'goldenrod',
                         }}
                     >
                         <strong>{msg.sender}:</strong> {msg.text}
+                        {msg.product && (
+                            <div style={styles.productDetails}>
+                                <img
+                                    src={msg.product.image}
+                                    alt={msg.product.title}
+                                    style={styles.productImage}
+                                />
+                                <div>
+                                    <h4>{msg.product.title}</h4>
+                                    <ul>
+                                        {msg.product.description.map((desc: string, i: number) => (
+                                            <li key={i}>{desc}</li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </div>
+                        )}
                     </div>
                 ))}
             </div>
@@ -98,8 +138,6 @@ const Chatbot = () => {
                     Send
                 </button>
             </div>
-
-            {/* <Footer /> */}
         </div>
     );
 };
@@ -118,7 +156,7 @@ const styles = {
         borderRadius: '30px',
     },
     header: {
-        backgroundColor: '#444',
+        backgroundColor: 'gray',
         color: 'black',
         textAlign: 'center',
         padding: '10px',
@@ -137,7 +175,7 @@ const styles = {
         overflowY: 'scroll',
         backgroundColor: 'black',
         fontFamily: 'Space Mono',
-        fontSize: '30px',
+        fontSize: '20px',
         fontWeight: 'bold',
         borderBottom: '1px solid #555',
     },
@@ -147,6 +185,20 @@ const styles = {
         maxWidth: '70%',
         wordWrap: 'break-word',
         animation: 'fadeIn 0.5s ease-in-out',
+    },
+    productDetails: {
+        marginTop: '10px',
+        display: 'flex',
+        gap: '10px',
+        backgroundColor: '#333',
+        padding: '10px',
+        borderRadius: '10px',
+    },
+    productImage: {
+        width: '50px',
+        height: '50px',
+        objectFit: 'cover',
+        borderRadius: '5px',
     },
     inputContainer: {
         display: 'flex',
@@ -163,7 +215,6 @@ const styles = {
         marginRight: '10px',
         backgroundColor: 'black',
         color: 'white',
-        // borderRadius: '30px',
     },
     button: {
         padding: '10px 20px',
@@ -174,20 +225,5 @@ const styles = {
         cursor: 'pointer',
     },
 };
-
-// Add keyframes for fade-in animation
-const styleSheet = document.styleSheets[0];
-styleSheet.insertRule(`
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-            transform: translateY(10px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-`, styleSheet.cssRules.length);
 
 export default Chatbot;
