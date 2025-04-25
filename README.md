@@ -24,18 +24,18 @@ Make sure you have the following installed on your system:
 
 ---
 ## Frontend using npm:
-framer-motion
-react-router-dom
-axios
-react-@oauth/google
+- framer-motion
+- react-router-dom
+- axios
+- react-@oauth/google
 
 ## Backend using npm:
-express
-mongoose
-razorpay
-dotenv
-crypto
-body-parser
+- express
+- mongoose
+- razorpay
+- dotenv
+- crypto
+- body-parser
 
 
 
