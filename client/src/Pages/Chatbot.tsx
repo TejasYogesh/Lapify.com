@@ -1,11 +1,23 @@
 import React, { useState } from 'react';
 import products from '../data/product';
-// import { useEffect } from 'react';
-// import { useState } from 'react';
-import '../App.css'
+import '../App.css';
+import Footer from '@/components/ui/Footer';
+import { motion } from 'framer-motion';
+
 const Chatbot = () => {
     const [messages, setMessages] = useState<{ sender: string; text: string }[]>([]);
     const [userInput, setUserInput] = useState('');
+
+    const getGreeting = () => {
+        const currentHour = new Date().getHours();
+        if (currentHour < 12) {
+            return 'Good Morning!';
+        } else if (currentHour < 18) {
+            return 'Good Afternoon!';
+        } else {
+            return 'Good Evening!';
+        }
+    };
 
     const handleSendMessage = () => {
         const userMessage = { sender: 'User', text: userInput };
@@ -32,9 +44,34 @@ const Chatbot = () => {
             <h2 style={styles.header}>Ask AI | About our products</h2>
             <div style={styles.chatWindow as React.CSSProperties}>
                 {messages.length === 0 && (
-                    <div style={{ textAlign: 'center', color: 'gray', marginTop: '20px', fontSize: '50px', fontStyle: 'inherit' }}>
-                        Welcome! Ask me about our products.
-                    </div>
+                    <motion.div
+                        initial={{ opacity: 0, y: -40 }} // Animation starts with opacity 0 and moves up
+                        animate={{ opacity: 1, y: 0 }} // Animation ends with opacity 1 and original position
+                        transition={{ duration: 1 }} // Animation duration
+                        style={{
+                            textAlign: 'center',
+                            color: 'gray',
+                            marginTop: '120px',
+                            fontSize: '50px',
+                            fontStyle: 'inherit',
+                        }}
+                    >
+                        {getGreeting()} <br />
+                        <motion.div initial={{ opacity: 0, y: -40 }} // Animation starts with opacity 0 and moves up
+                            animate={{ opacity: 1, y: 0 }} // Animation ends with opacity 1 and original position
+                            transition={{ duration: 1, delay: 0.2 }} // Animation duration
+                            style={{
+                                textAlign: 'center',
+                                color: 'gray',
+                                // marginTop: '10px',
+                                fontSize: '50px',
+                                fontStyle: 'inherit',
+                            }}>
+
+                            Welcome! Ask me about our products.
+
+                        </motion.div>
+                    </motion.div>
                 )}
                 {messages.map((msg, index) => (
                     <div
@@ -61,13 +98,14 @@ const Chatbot = () => {
                     Send
                 </button>
             </div>
+
+            {/* <Footer /> */}
         </div>
     );
 };
 
 const styles = {
     container: {
-        // width: '80%',
         width: '100%',
         height: '100vh',
         display: 'flex',
@@ -77,7 +115,7 @@ const styles = {
         fontFamily: 'Space Mono',
         backgroundColor: '#1e1e1e',
         color: 'white',
-        borderRadius:'30px',
+        borderRadius: '30px',
     },
     header: {
         backgroundColor: '#444',
@@ -85,7 +123,7 @@ const styles = {
         textAlign: 'center',
         padding: '10px',
         margin: 0,
-       fontFamily: 'Space Mono',
+        fontFamily: 'Space Mono',
         fontSize: '30px',
         fontWeight: 'bold',
         borderBottom: '1px solid #555',
@@ -113,6 +151,7 @@ const styles = {
     inputContainer: {
         display: 'flex',
         borderTop: '1px solid #444',
+        borderRadius: '10px',
         padding: '10px',
         backgroundColor: '#2c2c2c',
     },
@@ -120,10 +159,11 @@ const styles = {
         flex: 1,
         padding: '10px',
         border: '1px solid #555',
-        borderRadius: '5px',
+        borderRadius: '35px',
         marginRight: '10px',
         backgroundColor: 'black',
         color: 'white',
+        // borderRadius: '30px',
     },
     button: {
         padding: '10px 20px',
