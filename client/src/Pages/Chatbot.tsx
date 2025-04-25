@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import products from '../data/product';
 import '../App.css';
-import Footer from '@/components/ui/Footer';
+// import Footer from '@/components/ui/Footer';
 import { motion } from 'framer-motion';
 
 const Chatbot = () => {

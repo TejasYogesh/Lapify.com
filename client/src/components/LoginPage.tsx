@@ -90,7 +90,7 @@ export default function LoginPage({
       });
       console.log("Response from server:", response.data);
       alert("User saved successfully!");
-      navigate("/home"); // Redirect to home page
+      navigate("/Listof"); // Redirect to home page
     } catch (error) {
       console.error("Error saving user:", error);
       alert("Error saving user. Please try again.");

@@ -6,15 +6,18 @@ import PaymentSuccess from './Pages/PaymentSuccess';
 // import LoginPage from './components/LoginPage';
 import Chatbot from './Pages/Chatbot';
 import Login from './Pages/Login';
+import ListOf from './Pages/ListOf';
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/" element={<Login />} />
+        <Route path="/listof" element={<ListOf />} />
         <Route path="/payment-success" element={<PaymentSuccess />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Login />} />
         <Route path="/chatbot" element={<Chatbot />} />
       </Routes>
     </Router>
