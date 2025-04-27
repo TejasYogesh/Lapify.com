@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { googleLogout } from '@react-oauth/google';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from "@/components/ui/skeleton";
+import '../App.css'
 import {
     Card,
     CardContent,
@@ -31,11 +32,11 @@ const Home: React.FC = () => {
         <div>
 
 
-            <div className='p-10'>
+            <div className='p-5'>
                 <Navbar />
             </div>
 
-            <div className='bg-black text-white h-[100vh]'>
+            <div className='bg-black text-white h-[100vh] p-8'>
                 <div className='py-4'>
                     <p className='text-6xl font-bold items-left ml-5 mt-10'>
                         Pricing
@@ -88,7 +89,7 @@ const Home: React.FC = () => {
                                         ))}
                                     </CardHeader>
                                     <CardContent>
-                                        <Button onClick={()=> navigate(`/buynow/${product.id}`)}>Buy Now</Button>
+                                        <Button onClick={() => navigate(`/buynow/${product.id}`)}>Buy Now</Button>
                                     </CardContent>
                                 </Card>
                             </motion.div>
@@ -96,6 +97,8 @@ const Home: React.FC = () => {
                     </div>
                 )}
             </div>
+           
+            <div className='line bg-black p-12'></div>
 
             <Footer />
         </div>

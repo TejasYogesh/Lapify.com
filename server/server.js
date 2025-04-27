@@ -8,6 +8,7 @@ const dotenv = require("dotenv");
 const Razorpay = require("razorpay");
 const crypto = require("crypto");
 const mongoose = require("mongoose");
+const twilio = require('twilio')
 dotenv.config();
 // Initialize Express
 const app = express();
@@ -16,7 +17,63 @@ app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 
 
+const accountSid = 'AC974f71f7fd96e738beca2c33874ef6a8'
+const authToken = '5feef721c17983e1a7190c37713bccf4'
+const client = twilio(accountSid, authToken);
+const otpStore = {}; // In-memory store for OTPs
 
+
+app.post("/send-otp", (req, res) => {
+  const { phone } = req.body;
+
+  if (!/^\+?[1-9]\d{1,14}$/.test(phone)) {
+    return res.status(400).json({ message: "Invalid phone number format" });
+  }
+
+  const otp = Math.floor(10000 + Math.random() * 900000); // Random 6-digit OTP
+  client.messages
+    .create({
+      body: `Your OTP is ${otp}`,
+      from: `+19786523566`,
+      to: phone,
+    })
+    .then(() => {
+      otpStore[phone] = otp;
+      res.status(200).send({ success: true });
+    })
+    .catch((err) => {
+      console.log("Error:", err.message);
+      res.status(500).send({ success: false, message: "Failed to send OTP" });
+    });
+});
+
+// Route to verify OTP
+app.post("/verify-otp", (req, res) => {
+const { phone, otp } = req.body;
+
+if (!phone || !otp) {
+  return res
+    .status(400)
+    .json({ success: false, message: "Phone number and OTP are required" });
+}
+
+const storedOtp = otpStore[phone];
+
+if (parseInt(otp) === storedOtp) {
+  delete otpStore[phone]; // Remove OTP after successful verification
+  return res.json({
+    success: true,
+    verified: true,
+    message: "OTP verified successfully",
+  });
+} else {
+  return res.json({
+    success: false,
+    verified: false,
+    message: "Invalid OTP",
+  });
+}
+});
 
 
 

@@ -46,7 +46,7 @@ const GoogleLoginButton = () => {
           userData
         );
         console.log("Response from server:", response.data);
-        navigate("/"); // Redirect to home page
+        navigate("/home"); // Redirect to home page
         
       } catch (error) {
         console.error("Error saving Google ID:", error);

@@ -4,7 +4,7 @@ import '../App.css';
 import { googleLogout } from '@react-oauth/google';
 export default function Navbar() {
     const navItems = [
-        { name: "Home", path: "/" },
+        { name: "Home", path: "/home" },
         { name: "Laptops", path: "/listof" },
         { name: "Ask AI", path: "/chatbot" },
         { name: "Contact Us", path: "/contact" },
@@ -27,7 +27,7 @@ export default function Navbar() {
                     item.name === "Logout" ? (
                         <Link
                             key={item.name}
-                            to="/login"
+                            to="/"
                             onClick={() => googleLogout()}
                             className='text-gray-500 font-[400] text-sm hover:text-white'
                         >

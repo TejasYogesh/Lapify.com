@@ -29,7 +29,7 @@ const BuyNow: React.FC = () => {
                 currency: order.currency,
                 name: "Lapify.com",
                 description: "Test Transaction",
-                image: "/images/Lapify.png",
+                image: "Picture1.png",
                 order_id: order.id, // Order ID from Razorpay
                 callback_url: "http://localhost:5000/paymentVerification",
                 prefill: {
