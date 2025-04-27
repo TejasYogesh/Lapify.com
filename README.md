@@ -1,4 +1,4 @@
-# MERN + Razorpay Integration + ShadCN - UI
+# MERN + Razorpay Integration + ShadCN - UI + OTP Generation
 
 This project is a React-based frontend application integrated with an Express backend. It includes features like product listing, chatbot functionality, and Razorpay payment integration.
 
@@ -36,6 +36,7 @@ Make sure you have the following installed on your system:
 - dotenv
 - crypto
 - body-parser
+- twilio
 
 
 
