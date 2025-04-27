@@ -23,12 +23,19 @@ Make sure you have the following installed on your system:
 - MongoDB (local or cloud-based, e.g., MongoDB Atlas)
 
 ---
-## Frontend : npm install react-router-dom , npm install framer-motion , npm install razorpay
-## Backend  : npm install mongoose, dotenv, express, cors, jsPDF.
+## Frontend using npm:
+- framer-motion
+- react-router-dom
+- axios
+- react-@oauth/google
 
-## cd server
-npm install express dotenv mongoose razorpay body-parser cors
-cd ../client
-npm install react react-dom react-router-dom axios
+## Backend using npm:
+- express
+- mongoose
+- razorpay
+- dotenv
+- crypto
+- body-parser
+
 
 
